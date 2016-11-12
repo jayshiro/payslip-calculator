@@ -47,4 +47,19 @@ public class CsvServiceImplIntegrationTest {
         assertEquals(payslip2.getNetIncome(), 7304, 0);
         assertEquals(payslip2.getSuperAnnuation(), 1000, 0);
     }
+
+    @Test(expected = InvalidRowFormatException.class)
+    public void shouldThrowExceptionWhenThereIsAnInvalidNumber()
+            throws InvalidRowFormatException, IOException, InvalidFileExtensionException {
+        File file = new File(getClass().getClassLoader().getResource("employeeList2.csv").getFile());
+        List<Employee> employees = csvService.readCsv(file.getAbsolutePath());
+    }
+
+    @Test(expected = InvalidRowFormatException.class)
+    public void shouldThrowExceptionWhenARowDoesNotHaveFiveValues()
+            throws InvalidRowFormatException, IOException, InvalidFileExtensionException {
+        File file = new File(getClass().getClassLoader().getResource("employeeList3.csv").getFile());
+        List<Employee> employees = csvService.readCsv(file.getAbsolutePath());
+
+    }
 }
