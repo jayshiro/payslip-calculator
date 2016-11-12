@@ -46,11 +46,18 @@ public class CsvServiceImpl implements CsvService {
     @Override
     public Employee readRow(String row) throws InvalidRowFormatException {
         String[] rowData = row.split(DELIMITER);
+        double annualSalary, superAnnuation = 0;
 
         if(rowData.length != ROW_LENGTH) {
             throw new InvalidRowFormatException("Row must have 5 values.");
         }
 
+        try{
+            annualSalary = Double.parseDouble(rowData[2]);
+            superAnnuation = Double.parseDouble(rowData[3]);
+        } catch(NumberFormatException nfe) {
+            throw new InvalidRowFormatException("Annual salary/super annuation values must be valid numbers.");
+        }
 
 
         return null;

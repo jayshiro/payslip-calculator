@@ -7,6 +7,8 @@ public class Employee {
     private double superRate;
     private String paymentStartDate;
 
+    public Employee() {}
+
     public Employee(String firstName, String lastName, double annualSalary, double superRate, String paymentStartDate) {
         this.firstName = firstName;
         this.lastName = lastName;
