@@ -40,4 +40,12 @@ public class PayslipServiceImplTest {
         payslipService.setEmployee(employee2);
         assertEquals(payslipService.getIncomeTax(),0,0);
     }
+
+    @Test
+    public void shouldReturnCorrectNetIncome() {
+        assertEquals(payslipService.getNetIncome(), 4642, 0);
+        Employee employee1 = new Employee("Dick","Smith",100000,9,"01 December - 31 December");
+        payslipService.setEmployee(employee1);
+        assertEquals(payslipService.getNetIncome(), 6254, 0);
+    }
 }

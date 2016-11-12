@@ -40,7 +40,7 @@ public class PayslipServiceImpl extends PayslipService {
 
     @Override
     protected double getNetIncome() {
-        return 0;
+        return Math.round(getGrossIncome() - getIncomeTax());
     }
 
     @Override
