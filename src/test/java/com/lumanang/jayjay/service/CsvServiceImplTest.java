@@ -50,4 +50,13 @@ public class CsvServiceImplTest {
         csvService.readRow("Jack,Ryan,70000,b,01 January - 31 January");
     }
 
+    @Test(expected = InvalidRowFormatException.class)
+    public void shouldThrowExceptionIfAnnualSalaryIsOutsideValidRange() throws InvalidRowFormatException {
+        csvService.readRow("Meg,Ryan,-1,9,01 January - 31 January");
+    }
+
+    @Test(expected = InvalidRowFormatException.class)
+    public void shouldThrowExceptionIfSuperAnnuationIsOutsideValidRange() throws InvalidRowFormatException {
+        csvService.readRow("Cameron,Ryan,90000,51,01 January - 31 January");
+    }
 }

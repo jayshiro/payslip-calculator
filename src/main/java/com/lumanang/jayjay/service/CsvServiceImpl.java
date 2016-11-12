@@ -59,6 +59,13 @@ public class CsvServiceImpl implements CsvService {
             throw new InvalidRowFormatException("Annual salary/super annuation values must be valid numbers.");
         }
 
+        if(annualSalary < 0 || annualSalary > 999999) {
+            throw new InvalidRowFormatException("Annual salary can't be negative or more than 999,999.");
+        }
+
+        if(superAnnuation < 0 || superAnnuation > 50) {
+            throw new InvalidRowFormatException("Super annuation must be within 0 - 50.");
+        }
 
         return null;
     }
