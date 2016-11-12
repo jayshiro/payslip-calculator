@@ -52,9 +52,15 @@ public class CsvServiceImpl implements CsvService {
             throw new InvalidRowFormatException("Row must have 5 values.");
         }
 
+        for(String data : rowData) {
+            if(data.trim().length() == 0) {
+                throw new InvalidRowFormatException("Blank values are invalid.");
+            }
+        }
+
         try{
-            annualSalary = Double.parseDouble(rowData[2]);
-            superAnnuation = Double.parseDouble(rowData[3]);
+            annualSalary = Double.parseDouble(rowData[2].trim());
+            superAnnuation = Double.parseDouble(rowData[3].trim());
         } catch(NumberFormatException nfe) {
             throw new InvalidRowFormatException("Annual salary/super annuation values must be valid numbers.");
         }
