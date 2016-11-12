@@ -66,4 +66,9 @@ public class Payslip {
     public void setSuperAnnuation(double superAnnuation) {
         this.superAnnuation = superAnnuation;
     }
+
+    public String toString() {
+        return name + "," + payPeriod + "," +
+                (int)grossIncome + "," + (int)incomeTax + "," + (int)netIncome + "," + (int)superAnnuation;
+    }
 }
