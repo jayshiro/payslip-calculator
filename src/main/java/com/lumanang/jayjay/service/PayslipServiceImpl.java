@@ -2,6 +2,9 @@ package com.lumanang.jayjay.service;
 
 import com.lumanang.jayjay.model.Employee;
 import com.lumanang.jayjay.model.Payslip;
+import com.lumanang.jayjay.model.TaxTable;
+
+import java.util.Optional;
 
 public class PayslipServiceImpl extends PayslipService {
 
@@ -25,6 +28,13 @@ public class PayslipServiceImpl extends PayslipService {
 
     @Override
     protected double getIncomeTax() {
+        Optional<TaxTable> optionalTaxTable = TaxTable.findByAnnualSalary(employee.getAnnualSalary());
+
+        if(optionalTaxTable.isPresent()) {
+            TaxTable taxTable = optionalTaxTable.get();
+            return Math.round((((employee.getAnnualSalary() - taxTable.getSubtrahend()) * taxTable.getMultiplier())
+                    + taxTable.getAddend()) / 12);
+        }
         return 0;
     }
 
@@ -41,5 +51,10 @@ public class PayslipServiceImpl extends PayslipService {
     @Override
     public Payslip getPayslip() {
         return null;
+    }
+
+    @Override
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }

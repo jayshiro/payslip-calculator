@@ -25,4 +25,19 @@ public class PayslipServiceImplTest {
     public void shouldReturnCorrectGrossIncome() {
         assertEquals(payslipService.getGrossIncome(), 5833, 0);
     }
+
+    @Test
+    public void shouldCorrectlyReturnTheIncomeTax() {
+        assertEquals(payslipService.getIncomeTax(), 1191, 0);
+    }
+
+    @Test
+    public void shouldReturnZeroIncomeTaxForInvalidAnuualSalary() {
+        Employee employee1 = new Employee("In","Valid",1000000,10,"01 November - 30 November");
+        Employee employee2 = new Employee("Jane","Jean",-1,10,"01 November - 30 November");
+        payslipService.setEmployee(employee1);
+        assertEquals(payslipService.getIncomeTax(),0,0);
+        payslipService.setEmployee(employee2);
+        assertEquals(payslipService.getIncomeTax(),0,0);
+    }
 }

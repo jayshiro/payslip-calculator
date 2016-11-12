@@ -1,5 +1,6 @@
 package com.lumanang.jayjay.service;
 
+import com.lumanang.jayjay.model.Employee;
 import com.lumanang.jayjay.model.Payslip;
 
 public abstract class PayslipService {
@@ -9,4 +10,5 @@ public abstract class PayslipService {
     protected abstract double getNetIncome();
     protected abstract double getSuperAnnuation();
     public abstract Payslip getPayslip();
+    public abstract void setEmployee(Employee employee);
 }
