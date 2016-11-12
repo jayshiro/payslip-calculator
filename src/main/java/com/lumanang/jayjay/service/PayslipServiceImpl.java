@@ -45,7 +45,7 @@ public class PayslipServiceImpl extends PayslipService {
 
     @Override
     protected double getSuperAnnuation() {
-        return 0;
+        return Math.round(getGrossIncome() * (employee.getSuperRate() / 100));
     }
 
     @Override

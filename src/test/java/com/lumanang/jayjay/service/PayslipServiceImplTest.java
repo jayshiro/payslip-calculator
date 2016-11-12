@@ -48,4 +48,9 @@ public class PayslipServiceImplTest {
         payslipService.setEmployee(employee1);
         assertEquals(payslipService.getNetIncome(), 6254, 0);
     }
+
+    @Test
+    public void shouldReturnCorrectSuperAnnuation() {
+        assertEquals(payslipService.getSuperAnnuation(), 467, 0);
+    }
 }
