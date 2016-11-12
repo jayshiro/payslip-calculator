@@ -9,6 +9,16 @@ public class Payslip {
     private double netIncome;
     private double superAnnuation;
 
+    public Payslip(String name, String payPeriod, double grossIncome, double incomeTax, double netIncome,
+                   double superAnnuation) {
+        this.name = name;
+        this.payPeriod = payPeriod;
+        this.grossIncome = grossIncome;
+        this.incomeTax = incomeTax;
+        this.netIncome = netIncome;
+        this.superAnnuation = superAnnuation;
+    }
+
     public String getName() {
         return name;
     }

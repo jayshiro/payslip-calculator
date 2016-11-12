@@ -50,7 +50,8 @@ public class PayslipServiceImpl extends PayslipService {
 
     @Override
     public Payslip getPayslip() {
-        return null;
+        return new Payslip(employee.getFirstName() + " " + employee.getLastName(), employee.getPaymentStartDate(),
+                getGrossIncome(), getIncomeTax(), getNetIncome(), getSuperAnnuation());
     }
 
     @Override

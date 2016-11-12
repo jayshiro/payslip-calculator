@@ -1,6 +1,7 @@
 package com.lumanang.jayjay.service;
 
 import com.lumanang.jayjay.model.Employee;
+import com.lumanang.jayjay.model.Payslip;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -52,5 +53,16 @@ public class PayslipServiceImplTest {
     @Test
     public void shouldReturnCorrectSuperAnnuation() {
         assertEquals(payslipService.getSuperAnnuation(), 467, 0);
+    }
+
+    @Test
+    public void shouldReturnPayslipWithCorrectProperties() {
+        Payslip payslip1 = payslipService.getPayslip();
+        assertEquals(payslip1.getName(), "John Doe");
+        assertEquals(payslip1.getPayPeriod(), "01 September - 30 September");
+        assertEquals(payslip1.getGrossIncome(), 5833, 0);
+        assertEquals(payslip1.getIncomeTax(), 1191, 0);
+        assertEquals(payslip1.getNetIncome(), 4642, 0);
+        assertEquals(payslip1.getSuperAnnuation(), 467, 0);
     }
 }
