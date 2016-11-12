@@ -7,6 +7,14 @@ public class Employee {
     private double superRate;
     private String paymentStartDate;
 
+    public Employee(String firstName, String lastName, double annualSalary, double superRate, String paymentStartDate) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.annualSalary = annualSalary;
+        this.superRate = superRate;
+        this.paymentStartDate = paymentStartDate;
+    }
+
     public String getFirstName() {
         return firstName;
     }
