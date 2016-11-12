@@ -30,4 +30,4 @@ java -jar target/payslip-calculator-1.0-SNAPSHOT.jar employeeList.csv
 
 ##### Assumptions
 1. Pay periods are always monthly. There are no computations behind them, and they will always equal to the payment start date.
-2. Maximum income an employee can have is 999,999.Payslip Calculator
+2. Maximum income an employee can have is 999,999.
