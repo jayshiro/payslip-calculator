@@ -5,6 +5,8 @@ import com.lumanang.jayjay.model.Payslip;
 
 public class PayslipServiceImpl extends PayslipService {
 
+    private static final int MONTHS_IN_YEAR = 12;
+
     private Employee employee;
 
     public PayslipServiceImpl(Employee employee) {
@@ -18,7 +20,7 @@ public class PayslipServiceImpl extends PayslipService {
 
     @Override
     protected double getGrossIncome() {
-        return 0;
+        return Math.round(employee.getAnnualSalary() / MONTHS_IN_YEAR);
     }
 
     @Override

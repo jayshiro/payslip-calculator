@@ -20,4 +20,9 @@ public class PayslipServiceImplTest {
     public void shouldReturnPayPeriodEqualsPaymentStartDate() {
         assertEquals(payslipService.getPayPeriod(), "01 September - 30 September");
     }
+
+    @Test
+    public void shouldReturnCorrectGrossIncome() {
+        assertEquals(payslipService.getGrossIncome(), 5833, 0);
+    }
 }
