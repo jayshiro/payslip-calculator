@@ -1,5 +1,8 @@
 package com.lumanang.jayjay.model;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 public enum TaxTable {
     LOW(0,18200,0,0,0),
     BELOW_AVERAGE(18201,37000,18200,0.19,0),
@@ -39,5 +42,17 @@ public enum TaxTable {
 
     public double getAddend() {
         return addend;
+    }
+
+    public static Optional<TaxTable> findByAnnualSalary(double annualSalary) {
+        return Arrays.asList(values())
+                .stream()
+                .filter(taxTable -> {
+                    if(taxTable.getRangeFirst() <= annualSalary && annualSalary <= taxTable.getRangeLast()) {
+                        return true;
+                    }
+                    return false;
+                })
+                .findFirst();
     }
 }
