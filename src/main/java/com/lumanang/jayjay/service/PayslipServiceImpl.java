@@ -12,6 +12,8 @@ public class PayslipServiceImpl extends PayslipService {
 
     private Employee employee;
 
+    public PayslipServiceImpl() {}
+
     public PayslipServiceImpl(Employee employee) {
         this.employee = employee;
     }
