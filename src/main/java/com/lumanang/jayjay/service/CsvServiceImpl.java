@@ -21,23 +21,22 @@ public class CsvServiceImpl implements CsvService {
             throws InvalidFileExtensionException, IOException, InvalidRowFormatException {
         List<Employee> employees = new ArrayList<>();
 
-        if(hasValidFileExtension(filePath)) {
-            String row = "";
-            try (FileReader fileReader = new FileReader(filePath)) {
+        if(!hasValidFileExtension(filePath)) {
+            throw new InvalidFileExtensionException("Please only use CSV files.");
+        }
 
-                try (BufferedReader br = new BufferedReader(fileReader)) {
-                    while ((row = br.readLine()) != null) {
+        String row = "";
+        try (FileReader fileReader = new FileReader(filePath)) {
 
-                        employees.add(readRow(row));
-                    }
+            try (BufferedReader br = new BufferedReader(fileReader)) {
+                while ((row = br.readLine()) != null) {
+
+                    employees.add(readRow(row));
                 }
-
-            } catch (IOException e) {
-                throw new IOException("File is missing. Please provide correct file path.");
             }
 
-        } else {
-            throw new InvalidFileExtensionException("Please only use CSV files.");
+        } catch (IOException e) {
+            throw new IOException("File is missing. Please provide correct file path.");
         }
 
         return employees;
@@ -46,7 +45,7 @@ public class CsvServiceImpl implements CsvService {
     @Override
     public Employee readRow(String row) throws InvalidRowFormatException {
         String[] rowData = row.split(DELIMITER);
-        double annualSalary, superAnnuation = 0;
+        double annualSalary, superRate = 0;
 
         if(rowData.length != ROW_LENGTH) {
             throw new InvalidRowFormatException("Row must have 5 values.");
@@ -60,7 +59,7 @@ public class CsvServiceImpl implements CsvService {
 
         try{
             annualSalary = Double.parseDouble(rowData[2].trim());
-            superAnnuation = Double.parseDouble(rowData[3].trim());
+            superRate = Double.parseDouble(rowData[3].trim());
         } catch(NumberFormatException nfe) {
             throw new InvalidRowFormatException("Annual salary/super annuation values must be valid numbers.");
         }
@@ -69,11 +68,11 @@ public class CsvServiceImpl implements CsvService {
             throw new InvalidRowFormatException("Annual salary can't be negative or more than 999,999.");
         }
 
-        if(superAnnuation < 0 || superAnnuation > 50) {
+        if(superRate < 0 || superRate > 50) {
             throw new InvalidRowFormatException("Super annuation must be within 0 - 50.");
         }
 
-        return null;
+        return new Employee(rowData[0].trim(), rowData[1].trim(), annualSalary, superRate, rowData[4].trim());
     }
 
     private boolean hasValidFileExtension(String filePath) {
